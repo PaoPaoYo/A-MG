@@ -17,8 +17,9 @@ struct Index {
   @StorageProp('topRectHeight')
   topRectHeight: number = 0;
   @StorageProp('token') token: string = '';
-  @State inputToken: string = '';
   @StorageProp('formId') formId: string = '';
+  @State inputToken: string = '';
+  @State inputTokenVisible: boolean = false;
 
   build() {
     Flex({
@@ -61,11 +62,17 @@ struct Index {
             .justifyContent(FlexAlign.SpaceBetween)
             .onClick(() => {
               this.inputToken = this.token
-              this.dialogController.open()
+              // this.dialogController.open()
+              this.inputTokenVisible = true
             })
           }
           .type(ButtonType.Normal)
           .buttonStyle(ButtonStyleMode.TEXTUAL)
+          .bindSheet($$this.inputTokenVisible, this.TokenInputComponent(), {
+            title: {title: '设置Token'},
+            height: 200 + px2vp(this.bottomRectHeight),
+            blurStyle: BlurStyle.Thin
+          })
         }
         .backgroundColor($r('sys.color.ohos_fa_list_card_bg'))
         .borderRadius(20)
@@ -103,50 +110,41 @@ struct Index {
   // 自定义弹出框的内容区
   @Builder
   TokenInputComponent(): void {
-    Row() {
-      Text('设置Token')
-        .fontSize(22)
-        .fontWeight(600)
-      Button({type: ButtonType.Circle}) {
-        SymbolGlyph($r('sys.symbol.xmark'))
-          .fontSize(22)
-          .fontColor([$r('sys.color.ohos_fa_text_primary')])
-          .margin(8)
+    Column() {
+      Row() {
+        TextInput({
+          text: this.inputToken,
+          placeholder: '请输入token'
+        })
+          .defaultFocus(true)
+          .onChange((value: string) => {
+            this.inputToken = value
+          })
+          .onSubmit(() => {
+            AppStorage.setOrCreate('token', this.inputToken)
+            this.inputTokenVisible = false
+            this.updateCard()
+          })
       }
-      .backgroundColor($r('sys.color.color_sidebarcontainer_sub_bg'))
-      .onClick(() => {
-        this.dialogController.close()
-      })
-    }
-    .width('100%')
-    .justifyContent(FlexAlign.SpaceBetween)
-    Row() {
-      TextInput({
-        text: this.inputToken,
-        placeholder: '请输入token'
-      })
-        .focusable(true)
-        .onChange((value: string) => {
-          this.inputToken = value
+      .width('100%')
+      Row() {
+        Button('确定', {
+          type: ButtonType.Capsule
         })
+          .width('100%')
+          .fontColor($r('sys.color.brand'))
+          .backgroundColor($r('sys.color.color_sidebarcontainer_sub_bg'))
+          .onClick(() => {
+            AppStorage.setOrCreate('token', this.inputToken)
+            this.inputTokenVisible = false
+            this.updateCard()
+          })
+      }
+      .margin({top: 16})
+      .width('100%')
     }
     .width('100%')
-    .margin({top: 16})
-    Row() {
-      Button('确定', {
-        type: ButtonType.Capsule
-      })
-        .width('100%')
-        .fontColor($r('sys.color.brand'))
-        .backgroundColor($r('sys.color.color_sidebarcontainer_sub_bg'))
-        .onClick(() => {
-          AppStorage.setOrCreate('token', this.inputToken)
-          this.dialogController.close()
-          this.updateCard()
-        })
-    }
-    .margin({top: 16, bottom: px2vp(this.bottomRectHeight)})
-    .width('100%')
+    .padding(20)
   }
   private updateCard() {
     let context: common.UIAbilityContext = getContext(this) as common.UIAbilityContext;
