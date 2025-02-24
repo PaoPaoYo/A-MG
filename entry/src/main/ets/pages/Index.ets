@@ -67,7 +67,7 @@ struct Index {
           .type(ButtonType.Normal)
           .buttonStyle(ButtonStyleMode.TEXTUAL)
         }
-        .backgroundColor($r('sys.color.ohos_id_color_background'))
+        .backgroundColor($r('sys.color.ohos_fa_list_card_bg'))
         .borderRadius(20)
         .clip(true)
       }
@@ -110,9 +110,10 @@ struct Index {
       Button({type: ButtonType.Circle}) {
         SymbolGlyph($r('sys.symbol.xmark'))
           .fontSize(22)
+          .fontColor([$r('sys.color.ohos_fa_text_primary')])
           .margin(8)
       }
-      .backgroundColor($r('sys.color.ohos_id_background_secondary'))
+      .backgroundColor($r('sys.color.color_sidebarcontainer_sub_bg'))
       .onClick(() => {
         this.dialogController.close()
       })
@@ -137,7 +138,7 @@ struct Index {
       })
         .width('100%')
         .fontColor($r('sys.color.brand'))
-        .backgroundColor($r('sys.color.ohos_id_background_secondary'))
+        .backgroundColor($r('sys.color.color_sidebarcontainer_sub_bg'))
         .onClick(() => {
           AppStorage.setOrCreate('token', this.inputToken)
           this.dialogController.close()

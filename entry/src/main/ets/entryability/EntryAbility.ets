@@ -34,7 +34,7 @@ class MyParcelable implements rpc.Parcelable {
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want): void {
-    this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_NOT_SET);
+    this.context.getApplicationContext().setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_DARK);
     this.updateInfo(want)
     this.callee.on('updateCarInfo', (data: rpc.MessageSequence) => {
       interface callParams {
