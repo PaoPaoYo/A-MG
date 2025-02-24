@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "A MG"
+    },
+    {
+      "name": "AMGCardAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "AMGCardAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "AMGwidget_desc",
+      "value": "I HAVE A MG"
+    },
+    {
+      "name": "AMGwidget_display_name",
+      "value": "车辆信息"
+    },
+    {
+      "name": "InfoWithMap_desc",
+      "value": "This is a service widget. InfoWithMap"
+    },
+    {
+      "name": "InfoWithMap_display_name",
+      "value": "InfoWithMap"
+    }
+  ]
+}

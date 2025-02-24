@@ -1,0 +1,55 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "C:\\Users\\wangz\\.ohos\\config\\default_AMG_J5ERrbL2OEyaIFkdodXoagiNqxWC7Ettj8BpU5LZ1p0=.cer",
+          "storePassword": "0000001B2E034B516DAB9D916B0A10472B107D0ED74AB8E0BDE1CBD133397CDA2DE813F5CC941F2A42A52F",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B49B7708BE1D42E59383AE67D3E934BF132F88247BA8711BC48848396EBC5BCCD20A661C79E5B55",
+          "profile": "C:\\Users\\wangz\\.ohos\\config\\default_AMG_J5ERrbL2OEyaIFkdodXoagiNqxWC7Ettj8BpU5LZ1p0=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\wangz\\.ohos\\config\\default_AMG_J5ERrbL2OEyaIFkdodXoagiNqxWC7Ettj8BpU5LZ1p0=.p12"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "compatibleSdkVersion": "5.0.2(14)",
+        "runtimeOS": "HarmonyOS",
+        "buildOption": {
+          "strictMode": {
+            "caseSensitiveCheck": true,
+            "useNormalizedOHMUrl": true
+          }
+        }
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug",
+      },
+      {
+        "name": "release"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
